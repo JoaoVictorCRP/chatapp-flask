@@ -1,7 +1,9 @@
 from flask import Flask, render_template
 from flask import request, redirect, url_for 
+from flask_socketio import SocketIO # Comunicação bidirecional
 
 app = Flask(__name__)
+socketio = SocketIO(app)
 
 @app.route('/')
 def home():
@@ -18,4 +20,4 @@ def chat():
         return redirect(url_for('home'))
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    socketio.run(app, debug=True)
