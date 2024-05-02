@@ -18,6 +18,10 @@ def chat():
         return render_template('chat.html', username=username, room=room)
     else:
         return redirect(url_for('home'))
+    
+@socketio.on('join_room')
+def join_room_event(data):
+    app.logger.info(f'{data["username"]} entoru na sala {data["room"]}') # Logando informação
 
 if __name__ == '__main__':
     socketio.run(app, debug=True)
