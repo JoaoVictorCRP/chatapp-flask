@@ -20,11 +20,17 @@ def chat():
     else:
         return redirect(url_for('home'))
     
-@socketio.on('join_room') # Evento de entrar na sala
+@socketio.on('entrou_sala')
 def join_room_event(data):
     app.logger.info(f'{data["username"]} entrou na sala {data["room"]}') # Logando informação
     join_room(data['room'])
     socketio.emit('anuncio_de_entrada', data)
+
+@socketio.on('enviou_msg')
+def send_msg_event(data):
+    app.logger.info(f'{data["username"]} disse: "{data["message"]}" na sala {data["room"]}')
+    socketio.emit('recebeu_msg', data, room=data['room'])
+
     
 
 if __name__ == '__main__':
