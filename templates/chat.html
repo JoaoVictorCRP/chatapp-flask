@@ -18,11 +18,16 @@
     <script>
         const socket = io.connect('http://127.0.0.1:5000/');
 
+
         socket.on('connect', () => {
             socket.emit('join_room', {
                 username: "{{ username }}",
                 room: "{{ room }}"
             })
+        });
+
+        socket.on('anuncio_de_entrada', (info) => {
+            console.log(`${info.username} acabou de entrar na sala ${info.room}`)
         })
     </script>
 </body>
