@@ -8,7 +8,9 @@
 <body>
     <h1>Olá, {{ username}}!<br> Seja bem-vindo à sala de chat {{ room }}</h1>
 
-    <div id="messages"></div>
+    <div id="messages">
+        <div class="chat-div"></div>
+    </div>
     
     <form id="msg-input-form">
         <input type="text" id="msg-field"placeholder="Sua mensagem...">
@@ -46,7 +48,7 @@
             });
             // Sair da sala
             btn_sair.addEventListener('click',() => {
-                socket.emit('saiu_sala', { 
+                socket.emit('apertou_sair', { 
                     username: "{{ username }}",
                     room: "{{ room }}"
                 });
@@ -56,19 +58,19 @@
         socket.on('anuncio_de_entrada', (info) => {
             console.log(`${info.username} acabou de entrar na sala ${info.room}`);
             // Criando Bloco de chat
-            let chatDiv = document.querySelector('.chat-div')
-            console.log(chatDiv)
-            if(!chatDiv){
-                chatDiv = document.createElement('div');
-                chatDiv.className = 'chat-div'
-            };
+            const chatDiv = document.querySelector('.chat-div')
             chatDiv.innerHTML += `<b>${info.username}</b> entrou na sala.<br>`;
             document.getElementById('messages').appendChild(chatDiv);
         });
 
         socket.on('receber_msg', (info)=> {
             const chatDiv = document.querySelector('.chat-div')
-            chatDiv.innerHTML += `<b>${info.username}</b>: ${info.message}<br>`
+            chatDiv.innerHTML += `<b>${info.username}</b>: ${info.message}<br>` // FIXME
+        });
+
+        socket.on('saiu_sala', (info) => {
+            const chatDiv = document.querySelector('.chat-div')
+            chatDiv.innerHTML += `<b>${info.username} Saiu da Sala.</b><br>`
         })
     </script>
 </body>

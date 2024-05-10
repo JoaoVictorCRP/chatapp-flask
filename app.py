@@ -25,14 +25,18 @@ def join_room_event(data):
     username = data['username']
     room = data['room']
     join_room(room)
-    socketio.emit('anuncio_de_entrada', {'username': username, 'room': room}, room=room)
+    socketio.emit('anuncio_de_entrada', data, room=data["room"])
 
 @socketio.on('enviou_msg')
 def send_msg_event(data):
     app.logger.info(f'{data["username"]} disse: "{data["message"]}" na sala {data["room"]}')
-    socketio.emit('recebeu_msg', data, room=data['room'])
+    socketio.emit('receber_msg', data, room=data['room'])
 
-    
+@socketio.on('apertou_sair')
+def leave_room(data):
+    app.logger.info(f'{data["username"]} saiu da sala{data["room"]}') 
+    socketio.emit('saiu_sala', data) 
+    return redirect(url_for('home'))
 
 if __name__ == '__main__':
     socketio.run(app, debug=True)
