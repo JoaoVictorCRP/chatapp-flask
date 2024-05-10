@@ -22,9 +22,10 @@ def chat():
     
 @socketio.on('entrou_sala')
 def join_room_event(data):
-    app.logger.info(f'{data["username"]} entrou na sala {data["room"]}') # Logando informação
-    join_room(data['room'])
-    socketio.emit('anuncio_de_entrada', data)
+    username = data['username']
+    room = data['room']
+    join_room(room)
+    socketio.emit('anuncio_de_entrada', {'username': username, 'room': room}, room=room)
 
 @socketio.on('enviou_msg')
 def send_msg_event(data):
