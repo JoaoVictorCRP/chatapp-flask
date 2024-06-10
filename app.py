@@ -1,8 +1,11 @@
 from flask import Flask, render_template
 from flask import request, redirect, url_for 
-from flask_socketio import SocketIO # Comunicação bidirecional
-from flask_socketio import join_room
+from flask_socketio import SocketIO
+from flask_login import LoginManager 
+from flask_socketio import join_room, leave_room
+import json
 
+login_manager = LoginManager()
 app = Flask(__name__)
 socketio = SocketIO(app)
 
@@ -22,7 +25,6 @@ def chat():
     
 @socketio.on('entrou_sala')
 def join_room_event(data):
-    username = data['username']
     room = data['room']
     join_room(room)
     socketio.emit('anuncio_de_entrada', data, room=data["room"])
@@ -34,9 +36,11 @@ def send_msg_event(data):
 
 @socketio.on('apertou_sair')
 def leave_room(data):
-    app.logger.info(f'{data["username"]} saiu da sala{data["room"]}') 
-    socketio.emit('saiu_sala', data) 
-    return redirect(url_for('home'))
+    # app.logger.info(data["username"], 'saiu da sala ', data["room"]) 
+
+    leave_room(data['room']) #FIXME
+    socketio.emit('anuncio_de_saida', data, room=data['room'])
 
 if __name__ == '__main__':
+    login_manager.init_app(app)
     socketio.run(app, debug=True)

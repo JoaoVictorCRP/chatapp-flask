@@ -68,7 +68,7 @@
             chatDiv.innerHTML += `<b>${info.username}</b>: ${info.message}<br>` // FIXME
         });
 
-        socket.on('saiu_sala', (info) => {
+        socket.on('anuncio_de_saida', (info) => {
             const chatDiv = document.querySelector('.chat-div')
             chatDiv.innerHTML += `<b>${info.username} Saiu da Sala.</b><br>`
         })
