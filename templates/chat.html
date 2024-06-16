@@ -52,7 +52,8 @@
                     username: "{{ username }}",
                     room: "{{ room }}"
                 });
-            })
+                window.location.href = '/';
+            });
         });
 
         socket.on('anuncio_de_entrada', (info) => {

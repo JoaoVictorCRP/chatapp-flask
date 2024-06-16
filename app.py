@@ -36,10 +36,16 @@ def send_msg_event(data):
 
 @socketio.on('apertou_sair')
 def leave_room(data):
-    # app.logger.info(data["username"], 'saiu da sala ', data["room"]) 
-
-    leave_room(data['room']) #FIXME
-    socketio.emit('anuncio_de_saida', data, room=data['room'])
+    try:
+        username = data.get("username")
+        room = data.get("room")
+        if username and room:
+            app.logger.info(f'{username} saiu da sala {room}')
+            socketio.emit('anuncio_de_saida', data, room=room)
+        else:
+            app.logger.error("Dados incompletos: 'username' ou 'room' faltando")
+    except Exception as e:
+            app.logger.error(f"Erro ao processar saída da sala: {e}")
 
 if __name__ == '__main__':
     login_manager.init_app(app)
