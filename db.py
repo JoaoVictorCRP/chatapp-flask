@@ -17,6 +17,6 @@ def save_user(username, email, password):
     )
     con.commit()
 
-save_user('habia', 'habia@gmail.com', '123')
-res = cursor.execute('SELECT * FROM users')
+# save_user('habia', 'habia@gmail.com', '123')
+# res = cursor.execute('SELECT * FROM users')
 print(res.fetchall())
