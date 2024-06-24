@@ -19,7 +19,7 @@
 
     <button id="quit-btn"> Sair da Sala</button>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.3/socket.io.js"></script> <!-- Lado do cliente -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.3/socket.io.js"></script>
     <script>
         const socket = io.connect('http://127.0.0.1:5000/');
 
@@ -32,33 +32,33 @@
             let msgField = document.getElementById('msg-field')
             let form = document.getElementById('msg-input-form')
             let btn_sair = document.getElementById('quit-btn')
-            // Envio de mensagem
+            // Sending messages
             form.addEventListener('submit', (e) => {
                 let msg = msgField.value.trim()
                 e.preventDefault()
-                if(msg.length) { // Se a mensagem não está vazia
+                if(msg.length) { 
                     socket.emit('enviou_msg', {
                         username: "{{ username }}",
                         room: "{{ room }}",
-                        message: msg // Quando usuário disparar a msg, o objeto de comunicação entre servidor 
-                    });                     // Passará a incluir o atributo mensagem
+                        message: msg // When the user send the message, its content will be included 
+                    });                     //          as an attribute
                 };
                 msgField.value = '';
                 msgField.focus()
             });
-            // Sair da sala
+            // Leaving room
             btn_sair.addEventListener('click',() => {
                 socket.emit('apertou_sair', { 
                     username: "{{ username }}",
                     room: "{{ room }}"
                 });
-                window.location.href = '/';
+                window.location.href = '/'; // Is there a better way 2 do this?
             });
         });
 
         socket.on('anuncio_de_entrada', (info) => {
             console.log(`${info.username} acabou de entrar na sala ${info.room}`);
-            // Criando Bloco de chat
+            // Creating chat block
             const chatDiv = document.querySelector('.chat-div')
             chatDiv.innerHTML += `<b>${info.username}</b> entrou na sala.<br>`;
             document.getElementById('messages').appendChild(chatDiv);
@@ -66,7 +66,7 @@
 
         socket.on('receber_msg', (info)=> {
             const chatDiv = document.querySelector('.chat-div')
-            chatDiv.innerHTML += `<b>${info.username}</b>: ${info.message}<br>` // FIXME
+            chatDiv.innerHTML += `<b>${info.username}</b>: ${info.message}<br>`
         });
 
         socket.on('anuncio_de_saida', (info) => {

@@ -2,8 +2,7 @@ from flask import Flask, render_template
 from flask import request, redirect, url_for 
 from flask_socketio import SocketIO
 from flask_login import LoginManager 
-from flask_socketio import join_room, leave_room
-import json
+from flask_socketio import join_room
 
 login_manager = LoginManager()
 app = Flask(__name__)

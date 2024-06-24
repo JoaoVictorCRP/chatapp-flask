@@ -5,7 +5,7 @@ con = sqlite3.connect('./backend/chat.db')
 cursor = con.cursor()
 
 # cursor.execute("CREATE TABLE users(username TEXT, email TEXT, password TEXT)")
-res = cursor.execute("SELECT name FROM sqlite_master") # retorna nome das tabelas criadas
+res = cursor.execute("SELECT name FROM sqlite_master")
 
 
 def save_user(username, email, password):
@@ -17,6 +17,6 @@ def save_user(username, email, password):
     )
     con.commit()
 
-# save_user('habia', 'habia@gmail.com', '123')
+# save_user('habia', 'habia@gmail.com', '123') # Test
 # res = cursor.execute('SELECT * FROM users')
-print(res.fetchall())
+# print(res.fetchall())
