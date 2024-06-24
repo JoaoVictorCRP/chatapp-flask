@@ -21,7 +21,7 @@ class User:
         return False
     
     def get_id(self):
-        return self.username
+        return self.id
     
     def toString(self): # Debugging purpose
         return f'id: {self.id}\
