@@ -2,7 +2,7 @@ import sqlite3
 from user import User
 from werkzeug.security import generate_password_hash
 
-con = sqlite3.connect('./backend/chat.db')
+con = sqlite3.connect('./backend/chat.db', check_same_thread=False)
 cursor = con.cursor()
 
 # cursor.execute("CREATE TABLE users(id INTEGER, username TEXT, email TEXT, password TEXT)")
@@ -20,15 +20,14 @@ def save_user(user):
 
 def get_user(username):
     user_data = cursor.execute(f'SELECT * FROM users WHERE username="{username}"')
-    return user_data.fetchone()
-
+    return user_data.fetchone() if user_data else None
 
 # DEBUG ZONE :
 # user = User('habia', 'habia@gmail', '123')
 # save_user(user)
 # print(f'\nDADOS INSERIDOS! \n {user.toString()}')
 
-# print(get_user('habia'))
+print(get_user('habia')[0])
 
 # res = cursor.execute('SELECT * FROM users')
 # print(res.fetchall())

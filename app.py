@@ -1,8 +1,10 @@
 from flask import Flask, render_template
 from flask import request, redirect, url_for 
 from flask_socketio import SocketIO
-from flask_login import LoginManager 
+from flask_login import LoginManager , login_user
 from flask_socketio import join_room
+import db
+import user as u
 
 login_manager = LoginManager()
 app = Flask(__name__)
@@ -11,6 +13,23 @@ socketio = SocketIO(app)
 @app.route('/')
 def home():
     return render_template('index.html')
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    message = ''
+
+    if request.method == 'POST':
+        username = request.form.get('username')
+        password_input = request.form.get('password')
+        user = db.get_user(username)
+
+        if user and u.check_user_password(user[-1], password_input):
+            login_user(user) # FIXME: SQLITE query is returning a TUPLE... But it should return a User object, so we can use its methods.
+            return redirect(url_for('home'))
+        else:
+            message = 'Usuário/Senha incorreto.'
+    return render_template('login.html', message=message)
+
 
 @app.route('/chat')
 def chat():

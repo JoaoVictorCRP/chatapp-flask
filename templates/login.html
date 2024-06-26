@@ -3,18 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ChatApp</title>
+    <title>LOGIN</title>
 </head>
 <body>
-    <h1>Chat App</h1>
-        <form action="/chat">
+    <h1>Falaqui</h1>
+        <h3> {{message}}</h3>
+        <form method="post" action="/login">
             <div>
                 <label>Nome de Usuário:</label>
                 <input typé="text" name="username"> 
             </div>
             <div>
-                <label>ID da Sala:</label>
-                <input typé="text" name="room"> 
+                <label>Senha:</label>
+                <input typé="text" name="password"> 
             </div>
             <button type="submit">Confirmar</button>
         </form>
