@@ -3,7 +3,7 @@
 TODO:
 
 - ~Persistir dados no SQLite.~
-- Login
+- ~Login~
 - Signup
 - Histórico do chat
 - Melhorar front-end
