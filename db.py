@@ -8,7 +8,6 @@ cursor = con.cursor()
 # cursor.execute("CREATE TABLE users(id INTEGER, username TEXT, email TEXT, password TEXT)")
 res = cursor.execute("SELECT name FROM sqlite_master")
 
-# HARD CODING ALERT...
 def save_user(user:User):
     password_hash = generate_password_hash(user.password)
     cursor.execute(f"""
@@ -25,10 +24,7 @@ def get_user(username:str):
     """
     user_data = cursor.execute(f'SELECT * FROM users WHERE username="{username}"')
     user_data = user_data.fetchone() 
-    if not user_data:
-        return None
-    user_obj = User(user_data[1],user_data[2], user_data[3])
-    return user_obj
+    return User(user_data[1],user_data[2], user_data[3]) if user_data else None
 
 # DEBUG ZONE :
 # user = User('habia', 'habia@gmail', '123')

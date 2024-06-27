@@ -3,13 +3,19 @@ from flask import request, redirect, url_for
 from flask_socketio import SocketIO
 from flask_login import LoginManager , login_user
 from flask_socketio import join_room
+# User object:
+from user import check_user_password
 import db
-import user as u
+# Secret Key:
+import os
+from dotenv import load_dotenv
 
-login_manager = LoginManager()
+load_dotenv()
 app = Flask(__name__)
-login_manager.init_app(app)
+app.secret_key = os.getenv('SECRET_KEY')
 socketio = SocketIO(app)
+login_manager = LoginManager()
+login_manager.init_app(app)
 
 @app.route('/')
 def home():
@@ -24,13 +30,12 @@ def login():
         password_input = request.form.get('password')
         user = db.get_user(username)
         app.logger.info(user.toString())
-        if user and u.check_user_password(user.password, password_input):
+        if user and check_user_password(user.password, password_input):
             login_user(user)
             return redirect(url_for('home'))
         else:
             message = 'Usuário/Senha incorreto.'
     return render_template('login.html', message=message)
-
 
 @app.route('/chat')
 def chat():
@@ -65,6 +70,10 @@ def leave_room(data):
             app.logger.error("Dados incompletos: 'username' ou 'room' faltando")
     except Exception as e:
             app.logger.error(f"Erro ao processar saída da sala: {e}")
+
+@login_manager.user_loader
+def load_user(username):
+    return db.get_user(username)
 
 if __name__ == '__main__':
     socketio.run(app, debug=True)
