@@ -9,7 +9,7 @@ cursor = con.cursor()
 res = cursor.execute("SELECT name FROM sqlite_master")
 
 # HARD CODING ALERT...
-def save_user(user):
+def save_user(user:User):
     password_hash = generate_password_hash(user.password)
     cursor.execute(f"""
         INSERT INTO users(id, username, email, password) VALUES
@@ -18,16 +18,24 @@ def save_user(user):
     )
     con.commit()
 
-def get_user(username):
+def get_user(username:str):
+    """Queries userdata of a given user, searching by the username.
+
+        ~> Returns the queried user object
+    """
     user_data = cursor.execute(f'SELECT * FROM users WHERE username="{username}"')
-    return user_data.fetchone() if user_data else None
+    user_data = user_data.fetchone() 
+    if not user_data:
+        return None
+    user_obj = User(user_data[1],user_data[2], user_data[3])
+    return user_obj
 
 # DEBUG ZONE :
 # user = User('habia', 'habia@gmail', '123')
 # save_user(user)
 # print(f'\nDADOS INSERIDOS! \n {user.toString()}')
 
-print(get_user('habia')[0])
+# print(get_user('habia').toString())
 
 # res = cursor.execute('SELECT * FROM users')
 # print(res.fetchall())

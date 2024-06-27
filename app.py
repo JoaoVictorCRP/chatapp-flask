@@ -8,6 +8,7 @@ import user as u
 
 login_manager = LoginManager()
 app = Flask(__name__)
+login_manager.init_app(app)
 socketio = SocketIO(app)
 
 @app.route('/')
@@ -22,9 +23,9 @@ def login():
         username = request.form.get('username')
         password_input = request.form.get('password')
         user = db.get_user(username)
-
-        if user and u.check_user_password(user[-1], password_input):
-            login_user(user) # FIXME: SQLITE query is returning a TUPLE... But it should return a User object, so we can use its methods.
+        app.logger.info(user.toString())
+        if user and u.check_user_password(user.password, password_input):
+            login_user(user)
             return redirect(url_for('home'))
         else:
             message = 'Usuário/Senha incorreto.'
@@ -66,5 +67,4 @@ def leave_room(data):
             app.logger.error(f"Erro ao processar saída da sala: {e}")
 
 if __name__ == '__main__':
-    login_manager.init_app(app)
     socketio.run(app, debug=True)
