@@ -2,6 +2,7 @@ from flask import Flask, render_template
 from flask import request, redirect, url_for 
 from flask_socketio import SocketIO
 from flask_login import LoginManager , login_user, login_required, logout_user
+from flask_login import current_user
 from flask_socketio import join_room
 # User object:
 from user import check_user_password
@@ -15,30 +16,36 @@ app = Flask(__name__)
 app.secret_key = os.getenv('SECRET_KEY')
 socketio = SocketIO(app)
 login_manager = LoginManager()
+login_manager.login_view = "login" # <- the page that an unlogged user will get when it tries to acess a login_required page
 login_manager.init_app(app)
 
 @app.route('/')
 def home():
+    if current_user.is_authenticated:
+        app.logger.info(f'Usuário Atual: {current_user.username}')
     return render_template('index.html')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    message = ''
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
 
+    message = ''
     if request.method == 'POST':
         username = request.form.get('username')
         password_input = request.form.get('password')
         user = db.get_user(username)
-        app.logger.info(user.toString())
+        # app.logger.info(user.toString())
         if user and check_user_password(user.password, password_input):
             login_user(user)
+            app.logger.info(f'Usuário LOGADO: {current_user.username}')
             return redirect(url_for('home'))
         else:
             message = 'Usuário/Senha incorreto.'
     return render_template('login.html', message=message)
 
 
-@app.route("/logout")
+@app.route("/logout/")
 @login_required
 def logout():
     logout_user()
