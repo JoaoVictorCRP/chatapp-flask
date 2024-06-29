@@ -1,7 +1,7 @@
 from flask import Flask, render_template
 from flask import request, redirect, url_for 
 from flask_socketio import SocketIO
-from flask_login import LoginManager , login_user
+from flask_login import LoginManager , login_user, login_required, logout_user
 from flask_socketio import join_room
 # User object:
 from user import check_user_password
@@ -36,6 +36,14 @@ def login():
         else:
             message = 'Usuário/Senha incorreto.'
     return render_template('login.html', message=message)
+
+
+@app.route("/logout")
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('login'))
+
 
 @app.route('/chat')
 def chat():
