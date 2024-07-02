@@ -3,7 +3,6 @@ from werkzeug.security import check_password_hash
 
 class User:
     def __init__(self, username, email, password) -> None:
-        self.id = uuid.uuid1()
         self.username = username
         self.email = email
         self.password = password
@@ -22,11 +21,10 @@ class User:
         return False
     
     def get_id(self):
-        return self.id
+        return self.username
     
     def toString(self): # Debugging purpose
-        return f'id: {self.id}\
-        username: {self.username}\
+        return f'username: {self.username}\
         email: {self.email}\
         password: {self.password}\
         '

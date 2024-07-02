@@ -21,7 +21,7 @@ login_manager.init_app(app)
 
 @app.route('/')
 def home():
-    app.logger.info(f'Usuário Atual: {current_user.username}')
+    # app.logger.info(f'Usuário Atual: {current_user.username}')
     return render_template('index.html')
 
 @app.route('/login', methods=['GET', 'POST'])

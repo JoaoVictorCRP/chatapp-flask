@@ -7,8 +7,8 @@
 </head>
 <body>
     <h1>Chat App</h1>
-        <h3>Olá, {{ current_user.username }}
-            {% if username %} {{ username }}{% else %} Anônimo! {% endif %}  FIXME
+        <h3>Olá,
+            {% if current_user.is_authenticated %} {{ current_user.username }}{% else %} Anônimo! {% endif %}  FIXME
         </h3>
         <form action="/chat">
             <div>
