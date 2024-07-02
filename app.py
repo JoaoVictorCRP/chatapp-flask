@@ -21,8 +21,7 @@ login_manager.init_app(app)
 
 @app.route('/')
 def home():
-    if current_user.is_authenticated:
-        app.logger.info(f'Usuário Atual: {current_user.username}')
+    app.logger.info(f'Usuário Atual: {current_user.username}')
     return render_template('index.html')
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -35,10 +34,10 @@ def login():
         username = request.form.get('username')
         password_input = request.form.get('password')
         user = db.get_user(username)
-        # app.logger.info(user.toString())
         if user and check_user_password(user.password, password_input):
             login_user(user)
-            app.logger.info(f'Usuário LOGADO: {current_user.username}')
+            # current_user = user
+            app.logger.info(f'{current_user.username} está autenticado? {current_user.is_authenticated()}')
             return redirect(url_for('home'))
         else:
             message = 'Usuário/Senha incorreto.'

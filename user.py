@@ -9,7 +9,7 @@ class User:
         self.password = password
 
     @staticmethod
-    def is_authenticated(self):
+    def is_authenticated():
         # TODO: Auth Logic
         return True
     
