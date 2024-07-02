@@ -2,12 +2,11 @@ import sqlite3
 from user import User
 from werkzeug.security import generate_password_hash
 
+# Connecting to DB
 con = sqlite3.connect('./backend/chat.db', check_same_thread=False)
 cursor = con.cursor()
 
-# cursor.execute("CREATE TABLE users(username TEXT, email TEXT, password TEXT)")
-res = cursor.execute("SELECT name FROM sqlite_master")
-
+# Save user to DB
 def save_user(user:User):
     password_hash = generate_password_hash(user.password)
     cursor.execute(f"""
@@ -17,6 +16,7 @@ def save_user(user:User):
     )
     con.commit()
 
+# Get user data
 def get_user(username:str):
     """Queries userdata of a given user, searching by the username.
 
@@ -24,14 +24,4 @@ def get_user(username:str):
     """
     user_data = cursor.execute(f'SELECT * FROM users WHERE username="{username}"')
     user_data = user_data.fetchone() 
-    return User(user_data[1],user_data[2], user_data[3]) if user_data else None
-
-# DEBUG ZONE :
-user = User('habia', 'habia@gmail', '123')
-save_user(user)
-print(f'\nDADOS INSERIDOS! \n {user.toString()}')
-
-# print(get_user('habia').toString())
-
-# res = cursor.execute('SELECT * FROM users')
-# print(res.fetchall())
+    return User(user_data[0],user_data[1], user_data[2]) if user_data else None

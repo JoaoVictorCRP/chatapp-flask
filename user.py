@@ -31,7 +31,3 @@ class User:
     
 def check_user_password(hashedPassword, password_input):
     return check_password_hash(hashedPassword, password_input)
-
-
-# user = User('Joao','joao@gmail.com','123')
-# print(user.toString())
