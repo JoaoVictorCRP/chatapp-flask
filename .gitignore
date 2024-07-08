@@ -1,5 +1,6 @@
 venv
 *.sh
+*.cmd
 node_modules
 __pycache__
 *.zip

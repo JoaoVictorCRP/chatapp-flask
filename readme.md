@@ -8,4 +8,4 @@ TODO:
 - Histórico do chat
 - Melhorar front-end
 - Prevenir SQL Injection
--  2FA via email
+- Verificação por email

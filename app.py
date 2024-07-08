@@ -41,13 +41,15 @@ def login():
             message = 'Usuário/Senha incorreto.'
     return render_template('login.html', message=message)
 
+@app.route("/register/")
+def register():
+    return render_template('register.html')
 
 @app.route("/logout/")
 @login_required
 def logout():
     logout_user()
     return redirect(url_for('login'))
-
 
 @app.route('/chat')
 def chat():
