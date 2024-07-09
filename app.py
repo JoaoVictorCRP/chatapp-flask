@@ -41,9 +41,19 @@ def login():
             message = 'Usuário/Senha incorreto.'
     return render_template('login.html', message=message)
 
-@app.route("/register/")
+@app.route("/register/", methods=['GET', 'POST'])
 def register():
-    return render_template('register.html')
+    message = ''
+
+    if request.method == 'POST':
+        username = request.form.get('username')
+        email = request.form.get('email')
+        password = request.form.get('password')
+        password_confirm = request.form.get('passwordConfirm')
+        if not password==password_confirm:
+            message = 'As senhas não coincidem.'
+        # TODO: CREATE USER ON DB.
+    return render_template('register.html', message=message)
 
 @app.route("/logout/")
 @login_required
