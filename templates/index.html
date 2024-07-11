@@ -4,42 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FalaQui - Página Inicial</title>
-</head>
-<body>
-    <h1>FalaQui</h1>
-        <h3>Olá,
-            {% if current_user.is_authenticated %}
-                {{ current_user.username }} <a href="/logout/" style="text-decoration: none;"> <button> Sair</button></a>
-                {% else %} Anônimo! 
-            {% endif %}
-        </h3>
-        <form action="/chat">
-            <div>
-                <label>Nome de Usuário:</label>
-                <input typé="text" name="username"> 
-            </div>
-            <div>
-                <label>ID da Sala:</label>
-                <input typé="text" name="room"> 
-            </div>
-            <button type="submit">Confirmar</button>
-        </form>
+    <link rel="stylesheet" href="../static/css/global.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+</head>
+<body class="bg-blue-900 mt-1">
     {% if not current_user.is_authenticated %} <!-- Account-related Buttons-->
-        <div class="login-btns">
+        <div class="login-btns flex justify-end space-x-4">
             <a href="/login" style="text-decoration: none;">
-                <button>
+                <button class="rounded-full bg-white p-1">
                     Login
                 </button>
             </a>
             <a href="/register" style="text-decoration: none;">
-                <button>
+                <button class="rounded-full bg-white p-1">
                     Cadastrar
                 </button>
             </a>
         </div>
 
     {% endif %}
+
+
+    <div class="title text-white">
+        <h1 class="text-3xl font-bold text-clifford text-center">FalaQui</h1>
+        <h3 class="text-center">Olá,
+            {% if current_user.is_authenticated %}
+                {{ current_user.username }} <a href="/logout/" style="text-decoration: none;"> <button> Sair</button></a>
+                {% else %} Anônimo! 
+            {% endif %}
+        </h3>
+    </div>
+
+
+        <div class="flex justify-center items-center">
+            <div class="container bg-cyan-600 text-center border border-black rounded-full w-3/6 mt-5">
+                <form action="/chat" class="my-5">
+                    <div>
+                        <label class="font-medium">Nome de Exibição:</label>
+                        <input typé="text" name="username"  class="rounded-full text-cyan-500 bg-white border outline-blue-400 p-1"> 
+                    </div>
+                    <div class="space-y-2">
+                        <label class="font-medium">ID da Sala:</label>
+                        <input typé="text" name="room" class="rounded-full text-cyan-500 bg-white border outline-blue-400 p-1 "> 
+                    </div>
+                    <button type="submit" class="rounded-full bg-white mt-2 p-1 hover:bg-slate-400 border-black">Confirmar</button>
+                </form>
+            </div>
+        </div>
+        
+        
+
+
         
 
 </body>
