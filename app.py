@@ -5,7 +5,7 @@ from flask_login import LoginManager , login_user, login_required, logout_user
 from flask_login import current_user
 from flask_socketio import join_room
 # User object:
-from user import check_user_password
+from user import check_user_password, User
 import db
 # Secret Key:
 import os
@@ -50,10 +50,15 @@ def register():
         email = request.form.get('email')
         password = request.form.get('password')
         password_confirm = request.form.get('passwordConfirm')
+
         if not password==password_confirm:
-            message = 'As senhas não coincidem.'
-        # TODO: CREATE USER ON DB.
-    return render_template('register.html', message=message)
+            return render_template('register.html', message='As senhas não coincidem.')
+        
+        new_user = User(username,email, password)
+        db.save_user(new_user)
+        message = 'Usuário registrado com sucesso!<br>Por favor, verique a caixa de entrada do seu e-mail para realizar a confirmação da sua conta.'
+    return render_template('login.html', message=message)
+    
 
 @app.route("/logout/")
 @login_required
