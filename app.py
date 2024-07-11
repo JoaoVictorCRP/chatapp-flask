@@ -25,8 +25,6 @@ def home():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    if current_user.is_authenticated:
-        return redirect(url_for('home'))
 
     message = ''
     if request.method == 'POST':
@@ -44,6 +42,8 @@ def login():
 @app.route("/register/", methods=['GET', 'POST'])
 def register():
     message = ''
+    if current_user.is_authenticated: # If user is already logged in, will redirect to index.
+        return redirect(url_for('home'))
 
     if request.method == 'POST':
         username = request.form.get('username')
@@ -57,7 +57,9 @@ def register():
         new_user = User(username,email, password)
         db.save_user(new_user)
         message = 'Usuário registrado com sucesso!<br>Por favor, verique a caixa de entrada do seu e-mail para realizar a confirmação da sua conta.'
-    return render_template('login.html', message=message)
+        return render_template('login.html', message=message)
+    
+    return render_template('register.html', message=message)
     
 
 @app.route("/logout/")
