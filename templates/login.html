@@ -3,21 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../static/js/tailwind.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>FalaQui - Login</title>
 </head>
-<body>
-    <h1>FalaQui</h1>
+<body class="bg-gradient-to-r from-sky-500 to-indigo-500 mt-1 ">
+    <h1 class="text-3xl font-bold text-center text-white">FalaQui</h1>
         <h3> {{message}}</h3>
-        <form method="post" action="/login">
-            <div>
-                <label>Nome de Usuário:</label>
-                <input type="text" name="username" required> 
+        <div class="flex justify-center items-center">
+            <div class="container bg-cyan-600 text-center border border-black rounded-full w-3/6 mt-5">
+                <form method="post" action="/login" class="my-5">
+                    <div>
+                        <label class="font-medium">Nome de Usuário:</label>
+                        <input type="text" name="username" required class="rounded-full bg-white border p-1">  
+                    </div>
+                    <div class="space-y-2">
+                        <label class="font-medium">Senha:</label>
+                        <input type="text" name="password" required class="rounded-full bg-white p-1"> 
+                    </div>
+                    <button type="submit" class="rounded-full bg-white mt-2 p-1 hover:bg-slate-400 border-black">Confirmar</button>
+                </form>
             </div>
-            <div>
-                <label>Senha:</label>
-                <input type="text" name="password" required> 
-            </div>
-            <button type="submit">Confirmar</button>
-        </form>
+        </div>
 </body>
 </html>
