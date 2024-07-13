@@ -9,7 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </head>
-<body class="bg-gradient-to-r from-sky-500 to-indigo-500 mt-1">
+<body class="bg-[url('../static/img/background-index.png')]">
     {% if not current_user.is_authenticated %} <!-- Account-related Buttons-->
         <div class="login-btns flex justify-end space-x-4">
             <a href="/login" style="text-decoration: none;">
@@ -28,8 +28,8 @@
 
 
     <div class="title text-main text-white">
-        <h1 class="text-3xl font-bold text-center">FalaQui</h1>
-        <h3 class="text-center">Olá,
+        <h1 class="text-5xl font-bold text-center">FalaQui</h1>
+        <h3 class="text-center text-3xl">Olá,
             {% if current_user.is_authenticated %}
                 {{ current_user.username }} <a href="/logout/" style="text-decoration: none;"> <button> Sair</button></a>
                 {% else %} Anônimo! 
@@ -39,14 +39,15 @@
 
 
         <div class="flex justify-center items-center">
-            <div class="container bg-cyan-600 text-center border border-black rounded-full w-3/6 mt-5">
+            <div class="container bg-blue-950 text-center border border-black rounded-full w-3/6 mt-5">
                 <form action="/chat" class="my-5">
+                    <h2 class="text-3xl font-bold text-center text-white mb-2">Dados de entrada</h2>
                     <div>
-                        <label class="font-medium">Nome de Exibição:</label>
+                        <label class="font-medium text-white">Nome de Exibição:</label>
                         <input typé="text" name="username"   class="rounded-full bg-white border p-1"> 
                     </div>
                     <div class="space-y-2">
-                        <label class="font-medium">ID da Sala:</label>
+                        <label class="font-medium text-white">ID da Sala:</label>
                         <input typé="text" name="room" class="rounded-full bg-white border p-1"> 
                     </div>
                     <button type="submit" class="rounded-full bg-white mt-2 p-1 hover:bg-slate-400 border-black">Confirmar</button>

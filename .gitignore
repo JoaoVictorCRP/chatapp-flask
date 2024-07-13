@@ -23,6 +23,8 @@ __pycache__
 .env.test.local
 .env.production.local
 *.env
+formulario-alvo.png
+front1.jpg
 
 npm-debug.log*
 yarn-debug.log*
