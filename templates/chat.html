@@ -3,21 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FalaQui - Chatroom</title>
+    <title>FalaQui - Sala {{room}}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../static/js/tailwind.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
-<body>
-    <h1>Olá, {{ username}}!<br> Seja bem-vindo à sala de chat {{ room }}</h1>
+<body class="bg-[url('../static/img/background-chat.png')]">
+    <h1 class="text-5xl font-bold text-center text-blcack">Olá, {{ username}}!<br>
+        Você está na sala de chat {{ room }}
+    </h1>
 
-    <div id="messages">
-        <div class="chat-div"></div>
+    <div class=" bg-white border border-black rounded mt-5 mx-20 p-3">
+        <div id="messages">
+            <div class="chat-div"></div> <!-- TODO: FIXED SIZE, SCROLLABLE-->
+        </div>
+        
+        <form id="msg-input-form">
+            <input type="text" id="msg-field" class="rounded-full bg-white p-2 resize" placeholder="Sua mensagem..." spellcheck="true">
+            <button type="submit" class="rounded-full bg-green-600 mt-2 p-2 hover:bg-green-900 border-black text-white">Enviar</button>
+        </form>
     </div>
     
-    <form id="msg-input-form">
-        <input type="text" id="msg-field"placeholder="Sua mensagem...">
-        <button type="submit">Enviar</button>
-    </form>
-
-    <button id="quit-btn"> Sair da Sala</button>
+    <button id="quit-btn" class=" fixed rounded-full bg-red-600 mt-2 p-2 hover:bg-red-900 border-black text-white"> Sair da Sala</button>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.3/socket.io.js"></script>
     <script>
