@@ -28,7 +28,13 @@
 
 
     <div class="title text-main text-white">
-        <h1 class="text-5xl font-bold text-center">FalaQui</h1>
+        <div style="display: flex; justify-content:center;"> 
+            <a href="/" style="text-decoration: none;" >
+                <h1 class="text-5xl font-bold text-center">FalaQui</h1>
+            </a>
+        </div>
+
+        
         <h3 class="text-center text-3xl">Olá,
             {% if current_user.is_authenticated %}
                 {{ current_user.username }} <a href="/logout/" style="text-decoration: none;"> <button> Sair</button></a>
@@ -41,13 +47,13 @@
         <div class="flex justify-center items-center">
             <div class="container bg-blue-950 text-center border border-black rounded-full w-3/6 mt-5">
                 <form action="/chat" class="my-5">
-                    <h2 class="text-3xl font-bold text-center text-white mb-2">Dados de entrada</h2>
+                    <h2 class="text-3xl font-bold text-center text-white mb-2">Dados de Entrada</h2>
                     <div>
-                        <label class="font-medium text-white">Nome de Exibição:</label>
+                        <p class="font-medium text-white">Nome de Exibição:</p>
                         <input typé="text" name="username"   class="rounded-full bg-white border p-1"> 
                     </div>
-                    <div class="space-y-2">
-                        <label class="font-medium text-white">ID da Sala:</label>
+                    <div>
+                        <p class="font-medium text-white">ID da Sala:</p>
                         <input typé="text" name="room" class="rounded-full bg-white border p-1"> 
                     </div>
                     <button type="submit" class="rounded-full bg-white mt-2 p-1 hover:bg-slate-400 border-black">Confirmar</button>

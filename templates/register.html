@@ -9,25 +9,35 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body class="bg-[url('../static/img/background-index.png')]">
-    <h1>FalaQui</h1>
-        <h3> {{message}}</h3>
-        <form method="post" action="/register/">
-            <div>
-                <label>Nome de Usuário:</label>
-                <input type="text" name="username" required> 
-            </div>
-            <div>
-                <label>Email:</label>
-                <input type="email" name="email" required> 
-            </div>
-            <div>
-                <label>Senha:</label>
-                <input typé="text" name="password" required>
+    <a href="/" style="text-decoration: none;">
+        <h1 class="text-5xl font-bold text-center text-white">FalaQui</h1>
+    </a>
+    
+        <h3> {{message}}</h3> <!-- TODO: Use sweet alert to show this -->
 
-                <label>Confirmar Senha:</label>
-                <input typé="text" name="passwordConfirm" required> 
+        <div class="flex justify-center items-center">
+            <div class="container bg-blue-950 text-center border border-black rounded-full w-3/6 mt-5">
+                <form method="post" action="/register/" class="my-5">
+                    <h2 class="text-3xl font-bold text-center text-white mb-2">Registrar Nova Conta</h2>
+                    <div>
+                        <p class="font-medium text-white">Nome de Usuário:</p>
+                        <input type="text" name="username" class="rounded-full bg-white border p-1" required> 
+                    </div>
+                    <div>
+                        <p class="font-medium text-white">Email:</p>
+                        <input type="email" name="email" class="rounded-full bg-white border p-1" required> 
+                    </div>
+                    <div>
+                        <p class="font-medium text-white">Senha:</p>
+                        <input typé="text" name="password" class="rounded-full bg-white border p-1" required><br>
+        
+                        <p class="font-medium text-white">Confirmar Senha:</p>
+                        <input typé="text" name="passwordConfirm" class="rounded-full bg-white border p-1" required> 
+                    </div>
+                    <button type="submit" class="rounded-full bg-white mt-2 p-1 hover:bg-slate-400 border-black">Confirmar</button>
+                </form>
             </div>
-            <button type="submit">Confirmar</button>
-        </form>
+        </div>
+        
 </body>
 </html>
