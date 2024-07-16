@@ -7,7 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="../static/js/tailwind.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+    <script src="https://kit.fontawesome.com/1324b10db2.js" crossorigin="anonymous"></script>
 </head>
 <body class="bg-[url('../static/img/background-index.png')]">
     {% if not current_user.is_authenticated %} <!-- Account-related Buttons-->
@@ -45,16 +45,27 @@
 
 
         <div class="flex justify-center items-center">
-            <div class="container bg-blue-950 text-center border border-black rounded-full w-3/6 mt-5">
+            <div class="container bg-blue-950 text-center border border-black rounded-md w-3/6 mt-5">
                 <form action="/chat" class="my-5">
                     <h2 class="text-3xl font-bold text-center text-white mb-2">Dados de Entrada</h2>
                     <div>
                         <p class="font-medium text-white">Nome de Exibição:</p>
-                        <input typé="text" name="username"   class="rounded-full bg-white border p-1"> 
+                        <div class="flex mx-5 mb-2">
+                            <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-e-0 border-gray-300 border-e-0 rounded-s-md">
+                                <i class="fa-solid fa-user-tag"></i>
+                            </span>
+                            <input type="text" name="username" class="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5" placeholder="Nome de Exibição" required>
+                        </div>
                     </div>
                     <div>
                         <p class="font-medium text-white">ID da Sala:</p>
-                        <input typé="text" name="room" class="rounded-full bg-white border p-1"> 
+                        <div class="flex mx-5 mb-2">
+                            <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-e-0 border-gray-300 border-e-0 rounded-s-md">
+                                <i class="fa-solid fa-comment"></i>
+                            </span>
+                            <input type="number" name="room" class="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5" 
+                                placeholder="ID da Sala" min="0" max="9999" required>
+                        </div>
                     </div>
                     <button type="submit" class="rounded-full bg-white mt-2 p-1 hover:bg-slate-400 border-black">Confirmar</button>
                 </form>

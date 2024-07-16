@@ -6,6 +6,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="../static/js/tailwind.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://kit.fontawesome.com/1324b10db2.js" crossorigin="anonymous"></script>
     <title>FalaQui - Login</title>
 </head>
 <body class="bg-[url('../static/img/background-index.png')]"> <!-- gradient-to-r from-sky-500 to-indigo-500 mt-1  -->
@@ -18,16 +19,25 @@
     <h3> {{message}}</h3> <!-- TODO: Use sweet alert to show this -->
     <div class="flex justify-center items-center">
         
-        <div class="container bg-blue-950 text-center border border-black rounded-full w-3/6 mt-5">
+        <div class="container bg-blue-950 text-center border border-black rounded-md w-3/6 mt-5">
             <h2 class="text-3xl font-bold text-center text-white mb-2"> Login </h2>
             <form method="post" action="/login" class="my-5">
-                <div>
-                    <p class="font-medium text-white">Nome de Usuário:</p>
-                    <input type="text" name="username" required class="rounded-full bg-white border p-1">  
+                <p class="font-medium text-white">Nome de usuário:</p>
+                <div class="flex mx-5 mb-2">
+                    <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-e-0 border-gray-300 border-e-0 rounded-s-md">
+                        <i class="fa-solid fa-user"></i>
+                    </span>
+                    <input type="text" name="username" class="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5" placeholder="Nome de usuário" required>
                 </div>
-                <div class="space-y-2">
-                    <p class="font-medium text-white">Senha:</p>
-                    <input type="text" name="password" required class="rounded-full bg-white p-1"> 
+
+                <div>
+                        <p class="font-medium text-white">Senha:</p>
+                        <div class="flex mx-5 mb-2">
+                            <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-e-0 border-gray-300 border-e-0 rounded-s-md">
+                                <i class="fa-solid fa-lock"></i>
+                            </span>
+                            <input type="password" name="password" class="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5" placeholder="Senha" required>
+                        </div>
                 </div>
                 <button type="submit" class="rounded-full bg-white mt-2 p-1 hover:bg-slate-400 border-black">Confirmar</button>
             </form>
