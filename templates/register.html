@@ -5,16 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FalaQui - Cadastro</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="../static/js/tailwind.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.12.2/dist/sweetalert2.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://kit.fontawesome.com/1324b10db2.js" crossorigin="anonymous"></script>
+
 </head>
 <body class="bg-[url('../static/img/background-index.png')]">
     <a href="/" style="text-decoration: none;">
         <h1 class="text-5xl font-bold text-center text-white">FalaQui</h1>
     </a>
-    
-        <h3> {{message}}</h3> <!-- TODO: Use sweet alert to show this -->
+        {% if message %}
+            <p class="error-msg" style="display: none;">{{message}}</p> <!-- TODO: Use sweet alert to show this -->
+        {% endif %}
 
         <div class="flex justify-center items-center">
             <div class="container bg-white text-center border border-black rounded-md w-3/6 mt-5">
@@ -59,6 +61,18 @@
                 </form>
             </div>
         </div>
-        
+
+        <script>
+            const error = document.querySelector('.error-msg')
+
+            if(error){
+                Swal.fire({
+                    title: 'Erro!',
+                    text: error.innerHTML,
+                    icon: 'error',
+                    confirmButtonText: 'Ok'
+                })
+            }
+        </script>
 </body>
 </html>
