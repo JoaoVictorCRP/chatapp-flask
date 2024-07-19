@@ -32,8 +32,17 @@ def get_user(username:str):
 
 
 
-# Check if email already exists in database
-def email_exists(email:str):
-    user_data = cursor.execute(f'SELECT * FROM users WHERE email="{email}"')
-    user_data = user_data.fetchone()
-    return True if user_data else False
+# Checks if user data is already on the database
+def user_exists(**kwargs):
+    # Checks if email already exists in database
+    
+    if kwargs.get('email'):
+        user_data = cursor.execute(f'SELECT * FROM users WHERE email="{kwargs.get('email')}"')
+        user_data = user_data.fetchone()
+        return True if user_data else False
+    
+    # Checks if username is already taken
+    if kwargs.get('username'):
+        user_data = cursor.execute(f'SELECT * FROM users WHERE username="{kwargs.get('username')}"')
+        user_data = user_data.fetchone()
+        return True if user_data else False

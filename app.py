@@ -56,11 +56,12 @@ def register():
             return render_template('register.html', message='As senhas não coincidem.')
         
         # Verification #2: email exists?
-        if(db.email_exists(email)):
+        if(db.user_exists(email=email)):
             return render_template('register.html', message='Email já cadastrado.')
         
         # Verification #3: username was already taken?
-        # TODO
+        if(db.user_exists(username=username)):
+            return render_template('register.html', message='O nome de usuário já existe.')
 
         new_user = User(username,email, password)
         db.save_user(new_user)
