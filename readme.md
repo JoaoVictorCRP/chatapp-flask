@@ -2,9 +2,10 @@
 
 TODO:
 
-- ~Persistir dados no SQLite.~
+- ~Persistir dados no SQLite~
 - ~Login~
-- ~Signup~
+- ~Sign-up~
+- Sign-up validations <--
 - Melhorar front-end
 - Verificação por email
 - Prevenir SQL Injection

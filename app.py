@@ -58,6 +58,9 @@ def register():
         # Verification #2: email exists?
         if(db.email_exists(email)):
             return render_template('register.html', message='Email já cadastrado.')
+        
+        # Verification #3: username was already taken?
+        # TODO
 
         new_user = User(username,email, password)
         db.save_user(new_user)
