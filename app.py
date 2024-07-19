@@ -51,9 +51,14 @@ def register():
         password = request.form.get('password')
         password_confirm = request.form.get('passwordConfirm')
 
+        # Verification #1: do passwords match?
         if not password==password_confirm:
             return render_template('register.html', message='As senhas não coincidem.')
         
+        # Verification #2: email exists?
+        if(db.email_exists(email)):
+            return render_template('register.html', message='Email já cadastrado.')
+
         new_user = User(username,email, password)
         db.save_user(new_user)
         message = 'Usuário registrado com sucesso!<br>Por favor, verique a caixa de entrada do seu e-mail para realizar a confirmação da sua conta.'
