@@ -36,7 +36,7 @@ def login():
             # app.logger.info(f'{current_user.username} is authenticated? {current_user.is_authenticated()}')
             return redirect(url_for('home'))
         else:
-            message = 'Usuário/Senha incorreto.'
+            message = 'error'
     return render_template('login.html', message=message)
 
 @app.route("/register/", methods=['GET', 'POST'])
@@ -65,7 +65,7 @@ def register():
 
         new_user = User(username,email, password)
         db.save_user(new_user)
-        message = 'Usuário registrado com sucesso!<br>Por favor, verique a caixa de entrada do seu e-mail para realizar a confirmação da sua conta.'
+        message = 'success'
         return render_template('login.html', message=message)
     
     return render_template('register.html', message=message)

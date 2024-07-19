@@ -3,20 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" fav>
-    <title>FalaQui - Cadastro</title>
     <link rel="icon" type="image/x-icon" href="/static/img/favicon.ico">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.12.2/dist/sweetalert2.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://kit.fontawesome.com/1324b10db2.js" crossorigin="anonymous"></script>
-
+    <title>FalaQui - Cadastro</title>
 </head>
 <body class="bg-[url('../static/img/background-index.png')]">
     <a href="/" style="text-decoration: none;">
         <h1 class="text-5xl font-bold text-center text-white">FalaQui</h1>
     </a>
         {% if message %}
-            <p class="error-msg" style="display: none;">{{message}}</p> <!-- TODO: Use sweet alert to show this -->
+            <p class="error-msg" style="display: none;">{{message}}</p>
         {% endif %}
 
         <div class="flex justify-center items-center">
