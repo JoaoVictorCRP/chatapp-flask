@@ -66,7 +66,7 @@ def register():
         new_user = User(username,email, password)
         db.save_user(new_user)
         message = 'success'
-        return render_template('login.html', message=message)
+        return render_template('login.html', message=message) #FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME
     
     return render_template('register.html', message=message)
     

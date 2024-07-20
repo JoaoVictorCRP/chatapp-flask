@@ -29,9 +29,6 @@ def get_user(username:str):
 
     return User(user_data[0],user_data[1], user_data[2]) if user_data else None
 
-
-
-
 # Checks if user data is already on the database
 def user_exists(**kwargs):
     # Checks if email already exists in database
