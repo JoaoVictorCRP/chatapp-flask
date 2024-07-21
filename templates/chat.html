@@ -91,6 +91,8 @@
             userJoin.className = 'text-center'
             chatDiv.append(userJoin)
             document.getElementById('messages').appendChild(chatDiv);
+            // Adding user to online list
+            updateOnlineUsers(info.online_list)
         });
 
         socket.on('receber_msg', (info)=> {
@@ -110,6 +112,14 @@
             userLeaves.className = 'text-center'
             chatDiv.append(userLeaves)
         })
+
+        function updateOnlineUsers(users) {
+            const usersDiv = document.getElementById('user-list');
+            usersDiv.innerHTML = '';
+            users.forEach(user => {
+                usersDiv.innerHTML += `<li class="mb-1">${user}</li>`;
+            });
+        }
     </script>
 </body>
 </html>

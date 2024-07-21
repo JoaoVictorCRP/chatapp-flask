@@ -3,7 +3,7 @@ from flask import request, redirect, url_for
 from flask_socketio import SocketIO
 from flask_login import LoginManager , login_user, login_required, logout_user
 from flask_login import current_user
-from flask_socketio import join_room
+from flask_socketio import join_room, leave_room
 # User object:
 from user import check_user_password, User
 import db
@@ -18,6 +18,7 @@ socketio = SocketIO(app)
 login_manager = LoginManager()
 login_manager.login_view = "login" # <- the page that an unlogged user will get when it tries to acess a login_required page
 login_manager.init_app(app)
+online_list = {}
 
 @app.route('/')
 def home():
@@ -88,26 +89,36 @@ def chat():
         return redirect(url_for('home'))
     
 @socketio.on('entrou_sala')
-def join_room_event(data):
+def join_room_event(data: dict):
     room = data['room']
+    username = data['username']
+    if room in online_list:
+        online_list[room].append(username)
+    else:
+        online_list[room] = [username]
+    data['online_list'] = online_list[room]
     join_room(room)
     socketio.emit('anuncio_de_entrada', data, room=data["room"])
+
 
 @socketio.on('enviou_msg')
 def send_msg_event(data):
     app.logger.info(f'{data["username"]} disse: "{data["message"]}" na sala {data["room"]}')
     socketio.emit('receber_msg', data, room=data['room'])
 
-@socketio.on('apertou_sair')
-def leave_room(data):
+@socketio.on('apertou_sair') # FIXME FIXME FIXME: When the user goes back with the browser's back arrow, he doesnt trigger this event
+def leave_room_event(data):
     try:
         username = data.get("username")
         room = data.get("room")
         if username and room:
             app.logger.info(f'{username} saiu da sala {room}')
+            leave_room(room)
+            if room in online_list: # removing user from online list
+                online_list[room].remove(username)
+                if not online_list[room]: # if there is not a single user online in the room, delete it
+                    del online_list[room]
             socketio.emit('anuncio_de_saida', data, room=room)
-        else:
-            app.logger.error("Dados incompletos: 'username' ou 'room' faltando")
     except Exception as e:
             app.logger.error(f"Erro ao processar saída da sala: {e}")
 
