@@ -51,7 +51,6 @@ def register():
         email = request.form.get('email')
         password = request.form.get('password')
         password_confirm = request.form.get('passwordConfirm')
-
         # Verification #1: do passwords match?
         if not password==password_confirm:
             return render_template('register.html', message='As senhas não coincidem.')
@@ -106,7 +105,7 @@ def send_msg_event(data):
     app.logger.info(f'{data["username"]} disse: "{data["message"]}" na sala {data["room"]}')
     socketio.emit('receber_msg', data, room=data['room'])
 
-@socketio.on('apertou_sair') # FIXME FIXME FIXME: When the user goes back with the browser's back arrow, he doesnt trigger this event
+@socketio.on('apertou_sair') # FIXME: When the user hits the browser's back arrow, he doesnt trigger this event
 def leave_room_event(data):
     try:
         username = data.get("username")

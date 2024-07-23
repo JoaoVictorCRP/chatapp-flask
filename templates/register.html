@@ -28,7 +28,7 @@
                         <div class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-e-0 border-gray-300 border-e-0 rounded-s-md">
                             <i class="fa-solid fa-envelope"></i>
                         </div>
-                        <input type="email" name="email" class="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5" placeholder="Endereço de Email" required>
+                        <input type="email" name="email" class="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5" placeholder="Endereço de Email" autofocus required>
                     </div>
 
                     <p class="font-medium">Nome de usuário:</p>
@@ -45,7 +45,7 @@
                             <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-e-0 border-gray-300 border-e-0 rounded-s-md">
                                 <i class="fa-solid fa-lock"></i>
                             </span>
-                            <input type="password" name="password" class="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5" placeholder="Senha" required>
+                            <input type="password" minlength="6" id="password" name="password" class="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5" placeholder="Senha" required>
                         </div>
         
                         <p class="font-medium ">Confirmar Senha:</p>
@@ -53,11 +53,11 @@
                             <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-e-0 border-gray-300 border-e-0 rounded-s-md">
                                 <i class="fa-solid fa-lock"></i>
                             </span>
-                            <input type="password" name="passwordConfirm" class="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5" placeholder="Confirmar Senha" required>
+                            <input type="password" minlength="6" id="passwordConfirm" name="passwordConfirm" class="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5" placeholder="Confirmar Senha" required>
                         </div>
                         
                     </div>
-                    <button type="submit" class="rounded-full bg-blue-700 mt-2 p-1 hover:bg-blue-900 border-black">Confirmar</button>
+                    <button type="submit" id="submitBtn" class="rounded-full bg-blue-700 mt-2 p-1 hover:bg-blue-900 border-black">Confirmar</button>
                 </form>
             </div>
         </div>

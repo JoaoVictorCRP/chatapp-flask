@@ -17,7 +17,7 @@
             <div class="w-1/4 bg-gray-100 p-4 flex flex-col justify-between">
                 <div>
                     <h2 class="text-2xl font-bold mb-4">FalaQui</h2>
-                    <h3 class="text-lg font-semibold">Usuários Online</h3>
+                    <h3 class="text-lg font-semibold" id="onlineCount">Usuários Online (1)</h3>
                     <ul id="user-list" class="mt-2">
                         <!-- Lista de usuários online será inserida aqui -->
                     </ul>
@@ -36,7 +36,7 @@
                 </div>
                 <div class="p-4 border-t flex items-center">
                     <form id="msg-input-form" class="flex w-full">
-                        <input type="text" id="msg-field" class="flex-1 border border-gray-300 rounded-l-full p-2" placeholder="Sua mensagem..." spellcheck="true">
+                        <input type="text" id="msg-field" class="flex-1 border border-gray-300 rounded-l-full p-2" autofocus placeholder="Sua mensagem..." spellcheck="true">
                         <button type="submit" class="bg-green-600 text-white p-2 rounded-r-full hover:bg-green-800">Enviar</button>
                     </form>
                 </div>
@@ -108,17 +108,21 @@
         socket.on('anuncio_de_saida', (info) => {
             const chatDiv = document.querySelector('.chat-div')
             const userLeaves = document.createElement('p')
+            const onlineCount = document.querySelector('#onlineCount')
             userLeaves.innerHTML = `<b>${info.username}</b> saiu da sala.<br>`
             userLeaves.className = 'text-center'
+            onlineCount.innerHTML = `Usuários Online (${info.online_list.length})`
             chatDiv.append(userLeaves)
         })
 
         function updateOnlineUsers(users) {
             const usersDiv = document.getElementById('user-list');
+            const onlineCount = document.querySelector('#onlineCount')
             usersDiv.innerHTML = '';
             users.forEach(user => {
                 usersDiv.innerHTML += `<li class="mb-1">${user}</li>`;
             });
+            onlineCount.innerHTML = `Usuários Online (${users.length})
         }
     </script>
 </body>
