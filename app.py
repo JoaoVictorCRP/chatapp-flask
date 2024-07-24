@@ -91,7 +91,7 @@ def chat():
 def join_room_event(data: dict):
     room = data['room']
     username = data['username']
-    if room in online_list:
+    if (room in online_list) and (username not in online_list[room]):
         online_list[room].append(username)
     else:
         online_list[room] = [username]
@@ -117,6 +117,7 @@ def leave_room_event(data):
                 online_list[room].remove(username)
                 if not online_list[room]: # if there is not a single user online in the room, delete it
                     del online_list[room]
+            data['online_list'] = online_list[room]
             socketio.emit('anuncio_de_saida', data, room=room)
     except Exception as e:
             app.logger.error(f"Erro ao processar saída da sala: {e}")

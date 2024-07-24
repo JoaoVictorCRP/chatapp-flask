@@ -111,8 +111,8 @@
             const onlineCount = document.querySelector('#onlineCount')
             userLeaves.innerHTML = `<b>${info.username}</b> saiu da sala.<br>`
             userLeaves.className = 'text-center'
-            onlineCount.innerHTML = `Usuários Online (${info.online_list.length})`
-            chatDiv.append(userLeaves)
+            chatDiv.appendChild(userLeaves)
+            updateOnlineUsers(info.online_list)
         })
 
         function updateOnlineUsers(users) {
@@ -120,9 +120,10 @@
             const onlineCount = document.querySelector('#onlineCount')
             usersDiv.innerHTML = '';
             users.forEach(user => {
+
                 usersDiv.innerHTML += `<li class="mb-1">${user}</li>`;
             });
-            onlineCount.innerHTML = `Usuários Online (${users.length})
+            onlineCount.innerHTML = `Usuários Online (${users.length})`;
         }
     </script>
 </body>
