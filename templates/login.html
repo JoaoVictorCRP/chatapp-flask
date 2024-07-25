@@ -40,7 +40,12 @@
                             <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-e-0 border-gray-300 border-e-0 rounded-s-md">
                                 <i class="fa-solid fa-lock"></i>
                             </span>
-                            <input type="password" minlength="6" name="password" class="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5" placeholder="Senha" required>
+                            <input type="password" id="password" minlength="6" name="password" class="rounded-none bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5" placeholder="Senha" required>
+                            <div class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-gray-300 rounded-r-lg">
+                                <button type="button" onclick="showPassword()">
+                                    <i id="passwordIcon" class="fa-solid fa-eye-slash"></i>
+                                </button>
+                             </div>
                         </div>
                 </div>
                 <button type="submit" class="rounded-full bg-blue-700 mt-2 p-1 hover:bg-blue-900 border-black">Confirmar</button>
@@ -65,6 +70,19 @@
                 icon: 'error',
                 confirmButtonText: 'Ok'
             })
+        }
+
+        function showPassword() {
+            const passwordInput = document.querySelector('#password')
+            const passwordIcon = document.querySelector('#passwordIcon')
+
+            if(passwordInput.type === 'password'){
+                passwordInput.type = 'text'
+                passwordIcon.classList = "fa-solid fa-eye"
+            } else {
+                passwordInput.type = 'password'
+                passwordIcon.classList = "fa-solid fa-eye-slash"
+            }
         }
     </script>
 </body>

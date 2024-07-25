@@ -5,7 +5,7 @@ TODO:
 - ~Persistir dados no SQLite~
 - ~Login~
 - ~Sign-up~
-- Sign-up validations <--
-- Melhorar front-end
-- Verificação por email
-- Prevenir SQL Injection
+- ~Sign-up validations~
+- Upgradde front-end
+- Email 2FA
+- Prevent SQL Injection
