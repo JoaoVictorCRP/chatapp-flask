@@ -34,9 +34,11 @@ def login():
     if request.method == 'POST':
         username = request.form.get('username')
         password_input = request.form.get('password')
+        remember_me = True if request.form.get('rememberMe') else request.form.get('rememberMe')
+        app.logger.info(f'Remember ME: {remember_me}')
         user = db.get_user(username)
         if user and check_user_password(user.password, password_input):
-            login_user(user)
+            login_user(user, remember=remember_me)
             # app.logger.info(f'{current_user.username} is authenticated? {current_user.is_authenticated()}')
             return redirect(url_for('home'))
         else:

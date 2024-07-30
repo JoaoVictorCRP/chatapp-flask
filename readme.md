@@ -6,7 +6,7 @@
 - ~Login~
 - ~Sign-up~
 - ~Sign-up validations~
-- Privilégios de login
+- ~Privilégios de login~
 - Melhorar front-end
 - Email 2FA
 - Segurança do formulário (SQL Injection)
