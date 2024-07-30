@@ -6,11 +6,11 @@
 - ~Login~
 - ~Sign-up~
 - ~Sign-up validations~
+- Privilégios de login
 - Melhorar front-end
-- Adicionar sistema de adicionar amigos na plataforma
 - Email 2FA
-- Prevent SQL Injection
+- Segurança do formulário (SQL Injection)
 
 ## Sobre o Projeto
 Através deste projeto pretendo entender o funcionamento de websockets, com o framework Socket.io. 
-Nesta aplicação, o usuário poderá entrar em salas de chat com um Display Name personalizado, além de criar uma conta no site para que possa adicionar amigos na plataforma.
+Nesta aplicação, os usuários poderão entrar em salas de chat para comunicar uns com os outros, além disso, os usuários cadastrados poderão escolher um Display Name personalizado.
