@@ -10,6 +10,8 @@ import db
 # Secret Key:
 import os
 from dotenv import load_dotenv
+# Random anonymous username
+from random import randint
 
 load_dotenv()
 app = Flask(__name__)
@@ -17,6 +19,7 @@ app.secret_key = os.getenv('SECRET_KEY')
 socketio = SocketIO(app)
 login_manager = LoginManager()
 login_manager.login_view = "login" # <- the page that an unlogged user will get when it tries to acess a login_required page
+login_manager.login_message = u"Usuário logado com sucesso."
 login_manager.init_app(app)
 online_list = {}
 
@@ -79,7 +82,7 @@ def logout():
 
 @app.route('/chat')
 def chat():
-    username = request.args.get('username')
+    username = request.args.get('username') if request.args.get('username') else 'Anonimo' + str(randint(111,9999))
     room = request.args.get('room')
 
     if username and room:

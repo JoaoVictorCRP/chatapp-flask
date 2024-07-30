@@ -6,7 +6,6 @@
     <title>FalaQui - Página Inicial</title>
     <link rel="icon" type="image/x-icon" href="/static/img/favicon.ico">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="../static/js/tailwind.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.12.2/dist/sweetalert2.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://kit.fontawesome.com/1324b10db2.js" crossorigin="anonymous"></script>
@@ -51,13 +50,15 @@
                 <form action="/chat" class="my-5">
                     <h2 class="text-3xl font-bold text-center mb-2">Dados de Entrada</h2>
                     <div>
-                        <p class="font-medium">Nome de Exibição:</p>
-                        <div class="flex mx-5 mb-2">
-                            <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-e-0 border-gray-300 border-e-0 rounded-s-md">
-                                <i class="fa-solid fa-user-tag"></i>
-                            </span>
-                            <input type="text" name="username" class="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5" placeholder="Nome de Exibição" autofocus required>
-                        </div>
+                        {% if current_user.is_authenticated %}
+                            <p class="font-medium">Nome de Exibição:</p>
+                            <div class="flex mx-5 mb-2">
+                                <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-e-0 border-gray-300 border-e-0 rounded-s-md">
+                                    <i class="fa-solid fa-user-tag"></i>
+                                </span>
+                                <input type="text" name="username" class="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5" placeholder="Nome de Exibição" autofocus required>
+                            </div>
+                        {% endif %}
                     </div>
                     <div>
                         <p class="font-medium">ID da Sala:</p>
