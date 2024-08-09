@@ -39,7 +39,6 @@ def login():
         user = db.get_user(username)
         if user and check_user_password(user.password, password_input):
             login_user(user, remember=remember_me)
-            # app.logger.info(f'{current_user.username} is authenticated? {current_user.is_authenticated()}')
             return redirect(url_for('home'))
         else:
             message = 'error'
@@ -80,7 +79,7 @@ def register():
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for('login'))
+    return redirect(url_for('home'))
 
 @app.route('/chat')
 def chat():

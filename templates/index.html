@@ -36,10 +36,14 @@
         </div>
 
         
-        <h3 class="text-center text-3xl">Olá,
+        <h3 class="text-center text-3xl ">Olá,
             {% if current_user.is_authenticated %}
-                {{ current_user.username }} <a href="/logout/" style="text-decoration: none;"> <button> Sair</button></a>
-                {% else %} Anônimo! 
+                {{ current_user.username }} 
+                <a href="/logout/" style="text-decoration: none;" class=" bg-red-600 rounded-md p-1 text-sm mb-1"> 
+                    <button><i class="fa-solid fa-arrow-right-from-bracket"></i></button>
+                </a>
+
+            {% else %} Anônimo! 
             {% endif %}
         </h3>
     </div>
@@ -70,7 +74,7 @@
                                 placeholder="ID da Sala" min="0" max="9999" required>
                         </div>
                     </div>
-                    <button type="submit" class="rounded-full bg-blue-700 mt-2 p-1 hover:bg-blue-900 border-black dark:border-black">Confirmar</button>
+                    <button type="submit" class="rounded-full bg-blue-700 mt-2 p-1 hover:bg-blue-900 border-black dark:border-black text-white">Confirmar</button>
                 </form>
             </div>
         </div>
