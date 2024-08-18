@@ -3,7 +3,7 @@ from user import User
 from werkzeug.security import generate_password_hash
 
 # Connecting to DB
-con = sqlite3.connect('./backend/chat.db', check_same_thread=False)
+con = sqlite3.connect('./chat.db', check_same_thread=False)
 cursor = con.cursor()
 
 # Save user to DB
