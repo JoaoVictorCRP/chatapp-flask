@@ -7,9 +7,9 @@
 - ~Sign-up~
 - ~Sign-up validations~
 - ~Privilégios de login~
-- Melhorar front-end
-- Email 2FA
-- Segurança do formulário (SQL Injection)
+- ~Segurança do formulário (SQL Injection)~
+- Melhorar visualmente o front-end
+- Validações de login no front-end (Será necessário fazer uma API REST)
 
 ## Sobre o Projeto
 Através deste projeto pretendo entender o funcionamento de websockets, com o framework Socket.io. 
